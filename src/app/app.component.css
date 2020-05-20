@@ -1,0 +1,19 @@
+.mat-list-icon {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+mat-sidenav {
+    width: 280px;
+}
+
+mat-sidenav.not-mobile {
+    background: #fafafa;
+}
+
+h3[mat-subheader] button {
+    margin-right: -16px; 
+}
+
+mat-toolbar .app-name {
+    margin-left: 16px; 
+}

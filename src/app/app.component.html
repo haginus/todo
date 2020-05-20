@@ -1,0 +1,37 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="snav.toggle()" matTooltip="{{menuOpened ? 'Închide meniul' : 'Deschide meniul'}}" matTooltipPosition="right"><mat-icon>menu</mat-icon></button>
+  <h1 class="app-name">{{title}}</h1>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [ngClass]="{'not-mobile': !mobileQuery.matches}" (openedStart)="menuOpened = true" (closedStart)="menuOpened = false">
+    <mat-nav-list>
+      <h3 mat-subheader>
+        <span>Liste</span>
+        <span class="spacer"></span>
+        <button mat-icon-button matTooltip="Editează listele" (click)="openListManageDialog()">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </h3>
+      <a routerLink="/list/{{list.id}}" mat-list-item (click)="mobileQuery.matches && snav.close()" *ngFor="let list of lists; index as i;">
+          <mat-icon mat-list-icon>label</mat-icon>
+          <h4 mat-line>{{list.name}}</h4>
+      </a>
+      <a mat-list-item (click)="openListManageDialog(true)">
+        <mat-icon mat-list-icon>add</mat-icon>
+        <h4 mat-line>Adaugă o listă nouă</h4>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item (click)="mobileQuery.matches && snav.close()" routerLink="/settings">
+        <mat-icon mat-list-icon>settings</mat-icon>
+        <h4 mat-line>Setări</h4>
+      </a>
+      <a mat-list-item (click)="openAboutDialog()">
+          <mat-icon mat-list-icon>help</mat-icon>
+          <h4 mat-line>Despre</h4>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content [@RouterTransition]="getState(o)"> 
+    <router-outlet #o="outlet"></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

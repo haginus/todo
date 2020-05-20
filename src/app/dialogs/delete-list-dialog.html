@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Ștergi lista „{{data.listName}}”?</h2>
+<mat-dialog-content class="mat-typography">
+    <p>Dorești să ștergi această listă? Sarcinile din aceasta vor fi de asemenea șterse.</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <span class="spacer"></span>
+    <button mat-button (click)="cancel()">ANULEAZĂ</button>
+    <button mat-button (click)="confirm()">ȘTERGE</button>
+</mat-dialog-actions>

@@ -1,0 +1,49 @@
+
+<mat-card class="list-card" *ngIf="currentList">
+  <mat-card-title>{{currentList.name}}</mat-card-title>
+  <div class="layout row">
+    <button class="icon-text-button flex" (click)="openEditItemDialog()">
+      <mat-icon>add</mat-icon>
+      <span>Adaugă o nouă sarcină</span>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="listMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #listMenu>
+      <button mat-menu-item (click)="openRenameListDialog()">Redenumește lista</button>
+      <button mat-menu-item (click)="deleteCheckedItems()" [disabled]="filteredItems.checked.length == 0">Șterge sarcinile complete</button>
+      <button mat-menu-item (click)="openDeleteListDialog()" [disabled]="lists.length <= 1">Șterge lista</button>
+    </mat-menu>
+  </div>
+  <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let item of filteredItems.unchecked; trackBy: trackItem" [@Am]>
+      <mat-checkbox [(ngModel)]="item.checked" (change)="setCheckedState(item)">
+        <div>{{item.primary}}</div>
+        <div class="secondary">{{item.secondary}}</div>
+      </mat-checkbox>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="openEditItemDialog(item)" class="gray">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+  
+  <mat-expansion-panel class="mat-elevation-z0 no-body-padding" *ngIf="filteredItems.checked && filteredItems.checked.length > 0" >
+    <mat-expansion-panel-header>
+      <mat-panel-title>Sarcini complete ({{filteredItems.checked.length}})</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let item of filteredItems.checked; trackBy: trackItem" [@Am]>
+        <mat-checkbox [(ngModel)]="item.checked" (change)="setCheckedState(item)">
+          <div>{{item.primary}}</div>
+          <div class="secondary">{{item.secondary}}</div>
+        </mat-checkbox>
+        <span class="spacer"></span>
+        <button mat-icon-button (click)="openEditItemDialog(item)" class="gray">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-card>

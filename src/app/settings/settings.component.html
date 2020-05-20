@@ -1,0 +1,22 @@
+<mat-card class="list-card">
+  <mat-card-title>Setări generale</mat-card-title>
+  <mat-list role="list">
+    <mat-list-item role="listitem">
+      <mat-icon mat-list-icon>restore</mat-icon>
+      <h4 mat-line>Resetează baza de date</h4>
+      <p mat-line>Adu baza de date la forma de prezentare inițială.</p>
+      <button mat-raised-button color="primary" (click)="openResetDatabaseDialog()">RESET</button>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+      <mat-icon mat-list-icon>language</mat-icon>
+      <h4 mat-line>Limbă</h4>
+      <p mat-line>Alege limba dorită.</p>
+      <mat-form-field>
+        <mat-select value="ro">
+          <mat-option value="ro">Română</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+    </mat-list-item>
+  </mat-list>
+</mat-card>
