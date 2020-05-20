@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>{{data.isNew ? 'Adaugă o sarcină' : 'Editează sarcina'}}</h2>
+<mat-dialog-content>
+    <form class="layout column" #taskForm="ngForm">
+        <mat-form-field>
+            <input matInput placeholder="Sarcină" [(ngModel)]="data.item.primary" (keyup)="$event.keyCode == 13 && taskForm.form.valid && saveItem(data)" required name="primary">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Detalii suplimentare" [(ngModel)]="data.item.secondary" (keyup)="$event.keyCode == 13 && taskForm.form.valid && saveItem(data)" name="secondary">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-icon-button *ngIf="!data.isNew" class="gray" matTooltip="Șterge sarcina" (click)="deleteItem(data.item.id)">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <span class="spacer" style="min-width: 60px"></span>
+  <button mat-button mat-dialog-close>ANULEAZĂ</button>
+  <button mat-button [mat-dialog-close]="data" [disabled]="!taskForm.form.valid">SALVEAZĂ</button>
+</mat-dialog-actions>

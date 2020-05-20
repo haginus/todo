@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Resetează baza de date</h2>
+<mat-dialog-content class="mat-typography">
+    <p>Ești sigur că vrei să resetezi baza de date?<br>Toate datele stocate vor fi pierdute.</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <span class="spacer"></span>
+    <button mat-button mat-dialog-close>ANULEAZĂ</button>
+    <button mat-button (click)="confirm()">RESETEAZĂ</button>
+</mat-dialog-actions>

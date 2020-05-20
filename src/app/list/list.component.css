@@ -1,0 +1,10 @@
+.list-card {
+    max-width: 800px;
+    margin: 16px auto
+}
+
+mat-checkbox .secondary {
+    font-size: 12px;
+    line-height: 12px;
+    color: #616161;
+}
